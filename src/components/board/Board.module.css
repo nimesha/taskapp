@@ -1,0 +1,9 @@
+.board {
+  margin: 30px 5px;
+  padding: 5px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 100%;
+}

@@ -1,0 +1,32 @@
+.list {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0 7px;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 300px;
+  padding: 1rem 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+  border-radius: 0.5rem;
+  border: 0 solid;
+  box-sizing: border-box;
+}
+.list_header {
+  margin-left: 5px;
+  padding-bottom: 3px;
+  border-bottom: 4px solid #e3e3e3;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list_header h3 {
+  margin-bottom: 5px;
+  font-size: 1.05rem;
+}
+
+.list_header p {
+  font-size: 0.8rem;
+}

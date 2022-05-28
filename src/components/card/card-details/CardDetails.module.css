@@ -1,0 +1,35 @@
+.task {
+  padding: 0px 20px;
+  margin-bottom: 30px;
+}
+.element {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px;
+  font-size: 1rem;
+  color: #323232;
+}
+
+.element span {
+  padding-bottom: 7px;
+}
+
+.element input,
+.element textarea,
+.element select {
+  height: 40px;
+  border: 1px solid #c3c3c3;
+  font-size: 1rem;
+  color: #323232;
+}
+.input_submit {
+  background: #2dc5ff;
+  border: none;
+  height: 36px;
+  width: 80px;
+  font-weight: 800;
+  color: #ffffff;
+  float: right;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
