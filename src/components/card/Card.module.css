@@ -19,3 +19,12 @@
 .content {
   padding-top: 7px;
 }
+.close {
+  border: none;
+  background: none;
+}
+.delete {
+  background: #e57373;
+  color: #ffffff;
+  border: 1px solid #e57373;
+}
