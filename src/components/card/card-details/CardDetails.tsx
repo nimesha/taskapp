@@ -1,43 +1,72 @@
 import React, { useEffect, useState } from 'react';
-import { Task } from '../../types/Task';
+import { useListContext } from '../../../hooks/useListContext';
+import { useTaskContext } from '../../../hooks/useTaskContext';
+import { List } from '../../../types/List';
+import { ActionType, Task } from '../../../types/Task';
+
 import styles from './CardDetails.module.css';
 
 type Props = {
   task: Task;
-  setTask: React.Dispatch<React.SetStateAction<Task>>;
+  listState?: string;
+  id?: string;
+  close?: () => void;
 };
 
-const CardDetails: React.FC<Props> = ({ task, setTask }) => {
+const CardDetails: React.FC<Props> = ({ task, listState, id, close }) => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [taskState, setTaskState] = useState<string>('');
+  const [error, setError] = useState<string>('');
+  const { dispatch } = useTaskContext();
+  const { list } = useListContext();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setTask({ title: title, description: description, state: taskState });
-    console.log(taskState);
+
+    if (!title) {
+      setError('Task Name is required');
+      return true;
+    }
+    console.log(id);
+
+    if (id === undefined) {
+      dispatch({
+        type: ActionType.ADD_TASK,
+        payload: { title: title, description: description, state: taskState },
+      });
+    } else {
+      dispatch({
+        type: ActionType.UPDATE_TASK,
+        payload: {
+          id: id,
+          title: title,
+          description: description,
+          state: taskState,
+        },
+      });
+    }
+
+    if (close !== undefined) {
+      close();
+    }
   };
 
   useEffect(() => {
-    console.log(task);
-  }, [task]);
-
-  useEffect(() => {
-    setTitle(task.title);
-    setDescription(task.description);
-    setTaskState(task.state);
+    if (task) {
+      setTitle(task.title ? task.title : '');
+      setDescription(task.description ? task.description : '');
+    }
+    if (id === undefined) {
+      setTaskState(listState ? listState : '');
+    } else {
+      task?.state && setTaskState(task.state);
+    }
   }, []);
 
   return (
     <>
-      <form
-        className={styles.task}
-        onSubmit={handleSubmit}
-        // onSubmit={(e) => {
-        //   handleTask(e);
-        //   inputRef.current?.select();
-        // }}
-      >
+      <form className={styles.task} onSubmit={handleSubmit}>
         <label className={styles.element}>
           <span> Task Name:</span>
           <input
@@ -47,6 +76,7 @@ const CardDetails: React.FC<Props> = ({ task, setTask }) => {
             onChange={(e) => setTitle(e.target.value)}
           />
         </label>
+        {error && <p className="error">{error}</p>}
         <label className={styles.element}>
           <span>Task Description:</span>
           <textarea
@@ -55,15 +85,17 @@ const CardDetails: React.FC<Props> = ({ task, setTask }) => {
           />
         </label>
         <label className={styles.element}>
-          <span>Kanban state </span>
+          <span> State </span>
           <select
             value={taskState}
             onChange={(e) => setTaskState(e.target.value)}
           >
-            <option value="grapefruit">Grapefruit</option>
-            <option value="lime">Lime</option>
-            <option value="coconut">Coconut</option>
-            <option value="mango">Mango</option>
+            {list &&
+              list.map((item: List, index: number) => (
+                <option key={index} value={item?.value}>
+                  {item?.title}
+                </option>
+              ))}
           </select>
         </label>
         <button className={styles.input_submit} type="submit">

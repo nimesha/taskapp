@@ -20,7 +20,7 @@ const Modal: React.FC<Props> = ({ show, close, children }) =>
                 <FaWindowClose />
               </button>
             </header>
-            <main className="modal_content1"> {children} </main>
+            <main> {children} </main>
           </div>
           <div className={styles.modal_overlay}></div>
         </>,

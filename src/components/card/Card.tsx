@@ -1,44 +1,55 @@
 import styles from './Card.module.css';
-import { FaEdit, FaCircle } from 'react-icons/fa';
-// import useModal from '../../hooks/useModal';
+import { FaEdit } from 'react-icons/fa';
 import Modal from '../modal/Modal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CardDetails from './card-details/CardDetails';
-import { Task } from '../types/Task';
+import { ActionType, Task } from '../../types/Task';
+import { useTaskContext } from '../../hooks/useTaskContext';
+import Moment from 'react-moment';
+// import moment from 'moment';
 
-const Card = () => {
+type Props = {
+  task: Task;
+};
+
+const Card: React.FC<Props> = ({ task }) => {
   const [modal, setModal] = useState(false);
-  const [task, setTask] = useState<Task>({
-    title: 'name',
-    description: 'des',
-    state: 'up',
-  });
-
-  useEffect(() => {
-    setTask({ title: 'name', description: 'des', state: 'up' });
-  }, []);
+  const { dispatch } = useTaskContext();
 
   const Toggle = () => setModal(!modal);
+  const handleDelete = () => {
+    const confirmBox = window.confirm('Are you sure you want to delete this?');
+    if (confirmBox === true) {
+      dispatch({
+        type: ActionType.REMOVE_TASK,
+        payload: { id: task?.id },
+      });
+    }
+  };
   return (
     <div className={styles.card}>
       <header className={styles.header}>
-        <h5>CSS Animation</h5>
-        <FaEdit />
+        <h5>{task?.title}</h5>
+        <button className={styles.close} onClick={() => Toggle()}>
+          <FaEdit />
+        </button>
       </header>
       <article className={styles.content}>
-        <p>this is description of abc</p>
+        <p>{task?.description}</p>
       </article>
       <footer className={styles.footer}>
-        <small>Last updated on 27/05/2022</small>
+        <small>
+          Last updated on:{' '}
+          <Moment format="DD/MM/YYYY hh:mm">{task?.dateTime}</Moment>
+        </small>
         <span>
-          <FaCircle />
+          <button onClick={handleDelete} className={styles.delete}>
+            Delete
+          </button>
         </span>
       </footer>
-      <button className="clickMe" onClick={() => Toggle()}>
-        Modal
-      </button>
       <Modal show={modal} close={Toggle}>
-        <CardDetails task={task} setTask={setTask} />
+        <CardDetails task={task} id={task?.id} close={() => Toggle()} />
       </Modal>
     </div>
   );
