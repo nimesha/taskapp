@@ -28,7 +28,6 @@ const CardDetails: React.FC<Props> = ({ task, listState, id, close }) => {
       setError('Task Name is required');
       return true;
     }
-    console.log(id);
 
     if (id === undefined) {
       dispatch({
