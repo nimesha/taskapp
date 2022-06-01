@@ -8,9 +8,9 @@ const Board = () => {
   return (
     <div className={styles.board}>
       {list &&
-        list.map((item: ListType) => (
-          <List isNew={false} key={item?.id} listItem={item} />
-        ))}
+        list.map((item: ListType) => {
+          return <List isNew={false} key={item?.id} listItem={item} />;
+        })}
       <List isNew={true} />
     </div>
   );

@@ -13,11 +13,12 @@ type Props = {
   close?: () => void;
 };
 
-const CardDetails: React.FC<Props> = ({ task, listState, id, close }) => {
+const CardDetails: React.FC<Props> = ({ task, listState, id }) => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [taskState, setTaskState] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [success, setSuccess] = useState<string>('');
   const { dispatch } = useTaskContext();
   const { list } = useListContext();
 
@@ -34,6 +35,9 @@ const CardDetails: React.FC<Props> = ({ task, listState, id, close }) => {
         type: ActionType.ADD_TASK,
         payload: { title: title, description: description, state: taskState },
       });
+      setSuccess('New Task added');
+      setTitle('');
+      setDescription('');
     } else {
       dispatch({
         type: ActionType.UPDATE_TASK,
@@ -44,11 +48,12 @@ const CardDetails: React.FC<Props> = ({ task, listState, id, close }) => {
           state: taskState,
         },
       });
+      setSuccess('Task Updated');
     }
 
-    if (close !== undefined) {
-      close();
-    }
+    setInterval(() => {
+      setSuccess('');
+    }, 3000);
   };
 
   useEffect(() => {
@@ -66,6 +71,7 @@ const CardDetails: React.FC<Props> = ({ task, listState, id, close }) => {
   return (
     <>
       <form className={styles.task} onSubmit={handleSubmit}>
+        {success && <h6 className={styles.success}>{success}</h6>}
         <label className={styles.element}>
           <span> Task Name:</span>
           <input
