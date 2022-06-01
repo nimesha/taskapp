@@ -19,6 +19,7 @@ const CardDetails: React.FC<Props> = ({ task, listState, id }) => {
   const [taskState, setTaskState] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState<string>('');
+  const [formStatue, setFormStatue] = useState<boolean>(false);
   const { dispatch } = useTaskContext();
   const { list } = useListContext();
 
@@ -51,8 +52,10 @@ const CardDetails: React.FC<Props> = ({ task, listState, id }) => {
       setSuccess('Task Updated');
     }
     setError('');
+    setFormStatue(true);
     setInterval(() => {
       setSuccess('');
+      setFormStatue(false);
     }, 3000);
   };
 
@@ -103,7 +106,11 @@ const CardDetails: React.FC<Props> = ({ task, listState, id }) => {
               ))}
           </select>
         </label>
-        <button className={styles.input_submit} type="submit">
+        <button
+          className={styles.input_submit}
+          disabled={formStatue}
+          type="submit"
+        >
           Save
         </button>
       </form>

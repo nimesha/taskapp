@@ -32,6 +32,7 @@
   float: right;
   margin-top: 5px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 .success {
   color: green;

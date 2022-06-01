@@ -49,5 +49,9 @@
 }
 .task_add {
   cursor: pointer;
-  background: #e3e3e3;
+  background: #9d9d9d;
+  border: none;
+  height: 22px;
+  margin-top: 10px;
+  margin-left: 5px;
 }
