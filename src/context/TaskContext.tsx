@@ -10,12 +10,7 @@ interface TaskContextInterface {
   dispatch: React.Dispatch<Action>;
 }
 
-const initialState = JSON.parse(localStorage.getItem('Task') as string) || {
-  id: '',
-  title: '',
-  description: '',
-  state: '',
-};
+const initialState = JSON.parse(localStorage.getItem('Task') as string) || [];
 
 export const TaskContext = createContext<TaskContextInterface | null>(null);
 

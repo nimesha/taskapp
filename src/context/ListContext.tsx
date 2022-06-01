@@ -9,11 +9,7 @@ interface ListContextInterface {
   dispatch: React.Dispatch<Action>;
 }
 
-const initialState = JSON.parse(localStorage.getItem('List') as string) || {
-  id: '',
-  title: '',
-  value: '',
-};
+const initialState = JSON.parse(localStorage.getItem('List') as string) || [];
 
 export const ListContext = createContext<ListContextInterface | null>(null);
 
