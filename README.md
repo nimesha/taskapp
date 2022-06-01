@@ -12,7 +12,7 @@ Clone of a Trello board - within a day.
 6. Improve the UI/UX
 7. Use LocalStorage to store the data
 8. use React ContextAPI + useReducer 
-9. Added unit testing  
+9. Added unit testing  (src/components/card/Card.test.tsx)
 
 Have Single Board
 Single user can user the app - project manager
