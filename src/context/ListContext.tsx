@@ -28,6 +28,8 @@ export const listReducer = (list: ListState[], action: Action) => {
           value: action.payload.value,
         },
       ];
+    case ActionType.REMOVE_LIST:
+      return list.filter((item) => item?.id !== action.payload.id);
     default:
       return list;
   }
