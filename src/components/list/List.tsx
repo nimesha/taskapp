@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Card from '../card/Card';
 import styles from './List.module.css';
-import { FaEdit } from 'react-icons/fa';
 import { useListContext } from '../../hooks/useListContext';
 import { useTaskContext } from '../../hooks/useTaskContext';
 import Modal from '../modal/Modal';
@@ -32,7 +31,6 @@ const List: React.FC<Props> = ({ isNew, listItem }) => {
     }
     const items = list.find((item: ListType) => item.title === title.trim());
     if (items) {
-      console.log('df');
       setError('Title Already exists');
       return true;
     }
@@ -46,6 +44,25 @@ const List: React.FC<Props> = ({ isNew, listItem }) => {
     });
     setError('');
     setTitle('');
+  };
+
+  const handleDelete = (item: ListType) => {
+    const cards = taskCard.find((card: Task) => card.state === item.value);
+    if (cards) {
+      window.alert('Can not delete the list! Task already exists');
+      return true;
+    }
+    if (item.id) {
+      const confirmBox = window.confirm(
+        'Are you sure you want to delete this list?'
+      );
+      if (confirmBox === true) {
+        dispatch({
+          type: ActionType.REMOVE_LIST,
+          payload: { id: item.id },
+        });
+      }
+    }
   };
 
   return (
@@ -73,7 +90,14 @@ const List: React.FC<Props> = ({ isNew, listItem }) => {
         <header className={styles.list_header}>
           <div className={styles.title}>
             <h3>{listItem?.title}</h3>
-            <FaEdit />
+            {listItem && (
+              <button
+                onClick={() => handleDelete(listItem)}
+                className={styles.delete}
+              >
+                Delete
+              </button>
+            )}
           </div>
         </header>
       )}

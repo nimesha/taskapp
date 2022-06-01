@@ -34,7 +34,14 @@
   margin-bottom: 5px;
   font-size: 1.05rem;
 }
-
 .list_header p {
   font-size: 0.8rem;
+}
+.delete {
+  background: #e57373;
+  color: #ffffff;
+  padding: 3px 6px;
+  border: 1px solid #e57373;
+  height: 22px;
+  font-size: 11px;
 }

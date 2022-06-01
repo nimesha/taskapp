@@ -20,3 +20,10 @@
   padding-top: 16px;
   font-weight: 800;
 }
+.main_nav ul {
+  display: flex;
+}
+.main_nav ul li {
+  margin-left: 15px;
+  list-style: none;
+}

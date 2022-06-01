@@ -9,7 +9,7 @@ const Header = () => {
         <div className={styles.wrap}>
           <nav className={styles.main_nav}>
             <div className={styles.logo}>Taskey</div>
-            <div className="main-nav">
+            <div className={styles.main_nav}>
               <ul>
                 <li>Dashboard</li>
                 <li>Profile</li>
