@@ -2,7 +2,7 @@
 
 #### Description:
 
-Clone of a Trello board in 4 hours.
+Clone of a Trello board - within a day.
 
 1. Implement ESLint - Code status
 2. Implement Prettier - Code formatting
