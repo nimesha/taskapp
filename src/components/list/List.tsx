@@ -103,7 +103,7 @@ const List: React.FC<Props> = ({ isNew, listItem }) => {
       )}
 
       {!isNew && (
-        <div>
+        <div className={styles.content}>
           {taskCard &&
             taskCard
               .filter((item: { state: Task }) => item.state === listItem?.value)

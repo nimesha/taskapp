@@ -56,7 +56,7 @@ const CardDetails: React.FC<Props> = ({ task, listState, id }) => {
     setInterval(() => {
       setSuccess('');
       setFormStatue(false);
-    }, 3000);
+    }, 2000);
   };
 
   useEffect(() => {
