@@ -29,6 +29,7 @@
 .input_submit {
   width: 80px;
   height: 35px;
+  cursor: pointer;
 }
 .list_header h3 {
   margin-bottom: 5px;
@@ -38,10 +39,15 @@
   font-size: 0.8rem;
 }
 .delete {
+  cursor: pointer;
   background: #e57373;
   color: #ffffff;
   padding: 3px 6px;
   border: 1px solid #e57373;
   height: 22px;
   font-size: 11px;
+}
+.task_add {
+  cursor: pointer;
+  background: #e3e3e3;
 }

@@ -24,10 +24,7 @@ p {
   background: #4c4c4c;
 }
 .container {
-  height: 100vh;
-  overflow: none;
-  height: auto;
-  min-height: 800px;
+  height: calc(100vh - 135px);
 }
 .error {
   color: red;

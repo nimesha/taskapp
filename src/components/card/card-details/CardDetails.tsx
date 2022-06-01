@@ -50,7 +50,7 @@ const CardDetails: React.FC<Props> = ({ task, listState, id }) => {
       });
       setSuccess('Task Updated');
     }
-
+    setError('');
     setInterval(() => {
       setSuccess('');
     }, 3000);

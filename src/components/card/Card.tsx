@@ -21,20 +21,24 @@ const Card: React.FC<Props> = ({ task }) => {
     if (confirmBox === true) {
       dispatch({
         type: ActionType.REMOVE_TASK,
-        payload: { id: task?.id },
+        payload: { id: task.id },
       });
     }
+  };
+
+  const textWrap = (text: string, count: number) => {
+    return text.slice(0, count) + (text.length > count ? '...' : '');
   };
   return (
     <div className={styles.card}>
       <header className={styles.header}>
-        <h5>{task?.title}</h5>
+        <h5>{task.title && textWrap(task.title, 70)}</h5>
         <button className={styles.close} onClick={() => Toggle()}>
           <FaEdit />
         </button>
       </header>
       <article className={styles.content}>
-        <p>{task?.description}</p>
+        <p> {task.description && textWrap(task.description, 150)}</p>
       </article>
       <footer className={styles.footer}>
         <small>

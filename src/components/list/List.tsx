@@ -116,7 +116,7 @@ const List: React.FC<Props> = ({ isNew, listItem }) => {
       <div className={styles.footer}>
         {!isNew && (
           <>
-            <button className={styles.close} onClick={() => Toggle()}>
+            <button className={styles.task_add} onClick={() => Toggle()}>
               Add New Task
             </button>
             <Modal show={modal} close={Toggle}>
