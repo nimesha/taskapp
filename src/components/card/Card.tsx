@@ -5,8 +5,7 @@ import { useState } from 'react';
 import CardDetails from './card-details/CardDetails';
 import { ActionType, Task } from '../../types/Task';
 import { useTaskContext } from '../../hooks/useTaskContext';
-import Moment from 'react-moment';
-// import moment from 'moment';
+import moment from 'moment';
 
 type Props = {
   task: Task;
@@ -39,8 +38,7 @@ const Card: React.FC<Props> = ({ task }) => {
       </article>
       <footer className={styles.footer}>
         <small>
-          Last updated on:{' '}
-          <Moment format="DD/MM/YYYY hh:mm">{task?.dateTime}</Moment>
+          Last updated on: {moment(task?.dateTime).format('DD/MM/YYYY hh:mm')}
         </small>
         <span>
           <button onClick={handleDelete} className={styles.delete}>
