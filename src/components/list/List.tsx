@@ -7,6 +7,7 @@ import Modal from '../modal/Modal';
 import CardDetails from '../card/card-details/CardDetails';
 import { ActionType, List as ListType } from '../../types/List';
 import { Task } from '../../types/Task';
+import { v4 as uuidv4 } from 'uuid';
 
 type Props = {
   isNew: boolean;
@@ -38,6 +39,7 @@ const List: React.FC<Props> = ({ isNew, listItem }) => {
     dispatch({
       type: ActionType.ADD_LIST,
       payload: {
+        id: uuidv4(),
         title: title.trim(),
         value: title.replace(/[^a-zA-Z0-9]/g, ''),
       },
@@ -106,10 +108,8 @@ const List: React.FC<Props> = ({ isNew, listItem }) => {
         <div className={styles.content}>
           {taskCard &&
             taskCard
-              .filter((item: { state: Task }) => item.state === listItem?.value)
-              .map((item: { id: string }) => (
-                <Card key={item.id} task={item} />
-              ))}
+              .filter((item: Task) => item.state === listItem?.value)
+              .map((item: Task) => <Card key={item.id} task={item} />)}
         </div>
       )}
 
@@ -120,7 +120,7 @@ const List: React.FC<Props> = ({ isNew, listItem }) => {
               Add New Task
             </button>
             <Modal show={modal} close={Toggle}>
-              <CardDetails task={taskCard} listState={listItem?.value} />
+              <CardDetails listState={listItem?.value} />
             </Modal>
           </>
         )}

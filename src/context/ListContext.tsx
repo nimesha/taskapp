@@ -1,5 +1,4 @@
 import React, { createContext, useReducer, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { Action, ActionType, List } from '../types/List';
 
 type ListState = typeof initialState;
@@ -19,7 +18,7 @@ export const listReducer = (list: ListState[], action: Action) => {
       return [
         ...list,
         {
-          id: uuidv4(),
+          id: action.payload.id,
           title: action.payload.title,
           value: action.payload.value,
         },
