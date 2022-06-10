@@ -1,9 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import Card from './Card';
 import { TaskContextProvider } from '../../context/TaskContext';
+import { v4 as uuidv4 } from 'uuid';
 
 test('renders learn react link', () => {
-  const task = { title: 'New task', description: 'ToDo', state: 'Done' };
+  const task = {
+    id: uuidv4(),
+    title: 'New task',
+    description: 'ToDo',
+    state: 'Done',
+  };
 
   render(
     <TaskContextProvider>

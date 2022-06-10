@@ -1,12 +1,11 @@
 import React, { createContext, useReducer, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { Action, ActionType, Task } from '../types/Task';
 import moment from 'moment';
 
 type TaskState = typeof initialState;
 
 interface TaskContextInterface {
-  taskCard: Task[] | any;
+  taskCard: Task[];
   dispatch: React.Dispatch<Action>;
 }
 
@@ -20,7 +19,7 @@ export const listReducer = (taskCard: TaskState[], action: Action) => {
       return [
         ...taskCard,
         {
-          id: uuidv4(),
+          id: action.payload.id,
           title: action.payload.title,
           description: action.payload.description,
           state: action.payload.state,

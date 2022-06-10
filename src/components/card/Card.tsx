@@ -21,7 +21,7 @@ const Card: React.FC<Props> = ({ task }) => {
     if (confirmBox === true) {
       dispatch({
         type: ActionType.REMOVE_TASK,
-        payload: { id: task.id },
+        payload: task,
       });
     }
   };

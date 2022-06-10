@@ -3,11 +3,12 @@ import { useListContext } from '../../../hooks/useListContext';
 import { useTaskContext } from '../../../hooks/useTaskContext';
 import { List } from '../../../types/List';
 import { ActionType, Task } from '../../../types/Task';
+import { v4 as uuidv4 } from 'uuid';
 
 import styles from './CardDetails.module.css';
 
 type Props = {
-  task: Task;
+  task?: Task;
   listState?: string;
   id?: string;
   close?: () => void;
@@ -34,7 +35,12 @@ const CardDetails: React.FC<Props> = ({ task, listState, id }) => {
     if (id === undefined) {
       dispatch({
         type: ActionType.ADD_TASK,
-        payload: { title: title, description: description, state: taskState },
+        payload: {
+          id: uuidv4(),
+          title: title,
+          description: description,
+          state: taskState,
+        },
       });
       setSuccess('New Task added');
       setTitle('');
